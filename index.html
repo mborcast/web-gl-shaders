@@ -1,0 +1,85 @@
+<html lang="en">
+	<head>
+		<title>Manuel Borges</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body { 
+				margin: 0; 
+				overflow: hidden;
+			}
+			canvas { 
+				width: 100%; 
+				height: 100%;
+			}
+			.loading-screen {
+				width: 100%; 
+				height: 100%;
+				background: #000011;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				color: white;
+				font-family: Arial, Helvetica, sans-serif;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="loading" class="loading-screen">
+			<h1>Loading <span id="percent"></span></h1>
+		</div>
+		<script src="./three.min.js"></script>
+		<script src="./js/effects/StereoEffect.js"></script>
+		<script src="./js/loaders/MTLLoader.js"></script>
+		<script src="./js/loaders/OBJLoader.js"></script>
+		<script src="./js/controls/TrackballControls.js"></script>
+		<script id="vertexShader" type="x-shader/x-vertex">
+			uniform float time;	
+
+			varying vec3  normal_v;	
+			varying vec2  texture_v;
+			varying vec3  pos_v;
+			
+			void main() {
+				vec4 v = vec4( position, 1.0 );
+
+				v.x += cos(time * 0.015) * 10.0;
+				v.y += 15.0 * cos(time * 0.002);
+				v.z += sin(time * 0.015) * 10.0;
+
+				gl_Position = projectionMatrix * modelViewMatrix * vec4(v);
+
+				normal_v = normal;
+				texture_v = uv;
+				pos_v = vec3(gl_Position);
+			}		
+		</script>
+		<script id="fragmentShader" type="x-shader/x-fragment">	
+			varying vec3  normal_v;
+			varying vec2  texture_v;
+			varying vec3  pos_v;
+			
+			void main()	{
+				vec3 lightPosition = vec3(5.0, 0.0, 0.0);
+				vec4 lightColor = vec4( 0.0, 0.0, 0.25, 1.0);
+				
+				vec4 ambientColor = vec4(0.25, 0.0, 0.0, 1.0);
+    			vec4 diffuseColor = vec4(0.75, 0.0, 0.0, 1.0);
+    			vec4 specularColor = vec4(0.75,0.75,0.75,1.0);	
+			    
+			    vec3 L = normalize(lightPosition);   
+   				vec3 E = normalize(lightPosition); 
+   				vec3 R = normalize(-reflect(L,normal_v)); 
+
+			    vec4 diffuse = diffuseColor * max(dot(normal_v,L), 0.0);
+			    diffuse = clamp(diffuse, 0.0, 1.0);
+			    
+			    vec4 specular = specularColor * pow(max(dot(R,E),0.0),3.0);
+			    specular = clamp(specular, 0.0, 1.0);
+			    
+				gl_FragColor = ambientColor + diffuse + specular + lightColor;
+			}
+		</script>
+		<script src="index.js"></script>
+	</body>
+</html>

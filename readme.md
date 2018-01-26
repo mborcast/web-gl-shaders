@@ -4,10 +4,18 @@
 
 > Universidad Panamericana
 
-> 
 
+## Actividades
 
-## THREE.js
+### Actividad 1 (vertex shaders)
+
+Para esta actividad se elaboró el modelo de un cubo conformado por 1000 esferas de radio unitario. Dicho modelo fue exportado con Maya en formato ```.obj``` para importarlo en nuestra escena. Como requerimiento, se utilizó un fragment shader para transformar el modelo y crear un efecto de movimiento en espiral en dirección del eje Y. Como punto adicional, se modificó el fragment shader con una implementación del modelo de iluminación de Phong para añadir sombras y reflejos en cada una de las esferas del modelo.
+
+![Resultado de la actividad 1. Un cubo formado con esferas unitarias, y procesado con vertex y fragment shaders](./assets/01a.png)
+
+# Actividad 2 (fragment shaders)
+
+A continuación se describe cada uno de los pasos para la elaboración del efecto de cubemapping, refracción, y reflexión con fragments shaders con ```THREE.js```
 
 ### THREE.Scene
 Clase utilizada para inicializar los componentes de una escena, es decir, definir qué objetos graficar y establecer su ubicación en el mundo.
@@ -60,7 +68,6 @@ Clase que instancia un objeto que renderizará todos los componentes a partir de
 
 ### Otros
 Ajeno a la implementación de THREE.js para graficar una escena, también se definen propiedades para controlar el reajuste de tamaño de pantalla y otros eventos.
-________________________
 
 ## Shaders
 
@@ -71,3 +78,25 @@ En nuestra escena realiza transformaciones sobre cada uno de los vertices que co
 ### Fragment Shader
 
 En nuestra escena realiza transformaciones sobre los fragmentos de un objeto en pantalla. Esto quiere decir que regula cómo es la salida de color del mismo, separando cada canal del color que refracta un fragmento y aplicando a su vez la textura del cubemap.
+
+![Resultado de la actividad 2](./assets/02a.png)
+
+
+# Actividad 3 (estereovisión)
+
+
+### THREE.StereoEffect
+
+Implementación de una cámara estereoscópica, consistente de dos cámaras independientes, cada una renderizando a viewports independientes para cada lado: Left y Right. Tal como se muestra a continuación:
+
+```javascript
+renderer.setScissor( 0, 0, size.width / 2, size.height );
+renderer.setViewport( 0, 0, size.width / 2, size.height );
+renderer.render( scene, _stereo.cameraL );
+
+renderer.setScissor( size.width / 2, 0, size.width / 2, size.height );
+renderer.setViewport( size.width / 2, 0, size.width / 2, size.height );
+renderer.render( scene, _stereo.cameraR );
+```
+
+![Resultado de la actividad 3. Un cubo formado con esferas unitarias, y procesado con vertex y fragment shaders visualizado con un efecto de estereoscopía](./assets/03a.png)

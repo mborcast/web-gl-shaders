@@ -47,12 +47,14 @@ function init() {
 			percentComplete = xhr.loaded / xhr.total * 100;
 			percent.innerHTML = (Math.round(percentComplete, 2) + '%');
 
-			if (percentComplete >= 100) {
+			if (percentComplete >= 100) {			
 				document.getElementById("loading").style.display = "none";
 			}
 		}
 	};
 
+	new Audio('./assets/the_pulent_rag.mp3').play();	
+	
 	var mtlLoader = new THREE.MTLLoader();
 	mtlLoader.setPath('./assets/');
 	mtlLoader.load('foobar.mtl', function(materials) {

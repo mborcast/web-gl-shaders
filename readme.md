@@ -11,7 +11,7 @@
 
 Para esta actividad se elaboró el modelo de un cubo conformado por 1000 esferas de radio unitario. Dicho modelo fue exportado con Maya en formato ```.obj``` para importarlo en nuestra escena. Como requerimiento, se utilizó un fragment shader para transformar el modelo y crear un efecto de movimiento en espiral en dirección del eje Y. Como punto adicional, se modificó el fragment shader con una implementación del modelo de iluminación de Phong para añadir sombras y reflejos en cada una de las esferas del modelo.
 
-![Resultado de la actividad 1. Un cubo formado con esferas unitarias, y procesado con vertex y fragment shaders](./assets/01a.png)
+![Resultado de la actividad 1. Un cubo formado con esferas unitarias, y procesado con vertex y fragment shaders](/assets/01a.png)
 
 # Actividad 2 (fragment shaders)
 
@@ -79,7 +79,7 @@ En nuestra escena realiza transformaciones sobre cada uno de los vertices que co
 
 En nuestra escena realiza transformaciones sobre los fragmentos de un objeto en pantalla. Esto quiere decir que regula cómo es la salida de color del mismo, separando cada canal del color que refracta un fragmento y aplicando a su vez la textura del cubemap.
 
-![Resultado de la actividad 2](./assets/02a.png)
+![Resultado de la actividad 2](/assets/02a.png)
 
 
 # Actividad 3 (estereovisión)
@@ -99,4 +99,4 @@ renderer.setViewport( size.width / 2, 0, size.width / 2, size.height );
 renderer.render( scene, _stereo.cameraR );
 ```
 
-![Resultado de la actividad 3. Un cubo formado con esferas unitarias, y procesado con vertex y fragment shaders visualizado con un efecto de estereoscopía](./assets/03a.png)
+![Resultado de la actividad 3. Un cubo formado con esferas unitarias, y procesado con vertex y fragment shaders visualizado con un efecto de estereoscopía](/assets/03a.png)

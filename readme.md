@@ -1,13 +1,11 @@
-# Examen parcial 1 - WebGL
+# Examen parcial 1
+## Manuel Francisco Borges Castañeda
+### Universidad Panamericana
+#### Realidad Virtual
+__________________
 
-> Manuel Francisco Borges Castañeda
 
-> Universidad Panamericana
-
-
-## Actividades
-
-### Actividad 1 (vertex shaders)
+# Actividad 1 (vertex shaders)
 
 Para esta actividad se elaboró el modelo de un cubo conformado por 1000 esferas de radio unitario. Dicho modelo fue exportado con Maya en formato ```.obj``` para importarlo en nuestra escena. Como requerimiento, se utilizó un fragment shader para transformar el modelo y crear un efecto de movimiento en espiral en dirección del eje Y. Como punto adicional, se modificó el fragment shader con una implementación del modelo de iluminación de Phong para añadir sombras y reflejos en cada una de las esferas del modelo.
 
